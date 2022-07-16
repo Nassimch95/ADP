@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid mt-5">
+  <p>
+   surfaces corniche : {{corniche_detail.S_corniche}} m² </br>
+   surface total  corniche : {{corniche_detail.S_total_corniche}} m²</br>
+   Volume corniche   : {{corniche_detail.V_corniche}} m3</br>
+   Poids de la corniche   : {{corniche_detail.P_corniche}} t</br>
+  </p>
+</div>
+{% endblock content %}
+
+   
+
+       
+
+    

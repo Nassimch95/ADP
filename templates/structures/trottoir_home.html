@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Trottoir</th>
+                    <th scope="col">surface total Trottoir</th>
+                    <th scope="col">Volume Trottoir</th>
+                    <th scope="col">poids Trottoir</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for trottoir in trottoirs %}
+                  <tr>
+                    <th scope="row">{{trottoir.id}}</th>
+                    <td> <a href="{{trottoir.get_absolute_url}}">{{trottoir}}</a></td>
+                    <td>{{trottoir.S_total_trottoir}} t</td>
+                    <td>{{trottoir.V_trottoir}} m3 </td>
+                    <td>{{trottoir.P_trottoir}} t</td>
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

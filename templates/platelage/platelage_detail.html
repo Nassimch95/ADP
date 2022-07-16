@@ -1,0 +1,192 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row my-5">
+      <div class="col-8">
+          <h5 class="text-center"> u0  θ</h5>
+       {{ html_u0|safe}}
+      </div>
+
+      <div class="col-8">
+        <h5 class="text-center"> u1  θ</h5>
+     {{ html_u1|safe}}
+    </div>
+
+    <div class="col-8">
+        <h5 class="text-center"> ua  θ</h5>
+     {{ html_ua|safe}}
+    </div>
+
+    
+
+
+  </div>
+
+  <div class="row my-5">
+    <div class="col-8">
+        <h5 class="text-center"> u0  3θ</h5>
+     {{ html_u0_3teta|safe}}
+    </div>
+
+    <div class="col-8">
+      <h5 class="text-center"> u1  3θ</h5>
+   {{ html_u1_3teta|safe}}
+  </div>
+
+  <div class="col-8">
+      <h5 class="text-center"> ua  3θ</h5>
+   {{ html_ua_3teta|safe}}
+  </div>
+
+  
+
+
+  </div>
+
+
+
+<div class="row my-5">
+
+    <div class="col-6">
+        <h5 class="text-center"> u+ θ</h5>
+     {{ html_matrice_teta_p|safe}}
+    </div>
+
+    <div class="col-6">
+        <h5 class="text-center"> u- θ</h5>
+     {{ html_matrice_teta_n|safe}}
+    </div>
+
+
+</div>
+
+<div class="row my-5">
+
+  <div class="col-6">
+      <h5 class="text-center"> u+ 3θ</h5>
+   {{ html_matrice_3teta_p|safe}}
+  </div>
+
+  <div class="col-6">
+      <h5 class="text-center"> u- 3θ</h5>
+   {{ html_matrice_3teta_n|safe}}
+  </div>
+
+
+</div>
+
+<div class="row my-5">
+
+  <div class="col-12">
+      <h5 class="text-center"> pm</h5>
+   {{ html_pm|safe}}
+  </div>
+
+ 
+
+
+</div>
+
+<div class="row my-5">
+
+  <div class="col-5">
+      <h5 class="text-center"> M +</h5>
+   {{ html_M_P|safe}}
+  </div>
+  <div class="col-5">
+    <h5 class="text-center"> M -</h5>
+ {{ html_M_N|safe}}
+</div>
+
+ 
+
+
+</div>
+
+
+
+<div class="row my-5">
+
+  <div class="col-5">
+    <h5 class="text-center"> combinaison M +</h5>
+   {{html_combinaison_arr_P|safe}}
+  </div>
+  <div class="col-5">
+    <h5 class="text-center"> combinaison  M -</h5>
+    {{html_combinaison_arr_N|safe}}
+ 
+</div>
+
+ 
+
+
+</div>
+
+
+<div class="row my-5">
+
+  <div class="col-5">
+    <h5 class="text-center"> MAX M +</h5>
+   {{html_M_Max_P|safe}}
+  </div>
+  <div class="col-5">
+    <h5 class="text-center"> MAX M -</h5>
+    {{html_M_Max_N|safe}}
+ 
+</div>
+</div>
+
+<div class="row">
+  <h3 class="text-center"> flexion localisé</h3>
+ <div class="col-12">
+
+   {{html_lx_ly_arr|safe}}
+ </div>
+</div>
+
+<div class="row">
+  <h5 class="text-center"> G et A LOCALISE</h5>
+ <div class="col-5">
+
+   {{html_G_ET_A_LOCALISE_arr|safe}}
+ </div>
+</div>
+
+<div class="row">
+  <h5 class="text-center"> B et MC120 LOCALISE</h5>
+ <div class="col-8">
+
+   {{html_B_Mc120_LOCALISE_arr|safe}}
+ </div>
+</div>
+
+
+<div class="row">
+  <h5 class="text-center"> Combinaison ELU ELS  localise</h5>
+  <div class="col-5">
+    <h5 class="text-center">Combinaison  ELU  localise</h5>
+    {{html_ELU_LOCALISE_M|safe}}
+  </div>
+  <div class="col-5">
+    <h5 class="text-center"> Combinaison ELS   localise</h5>
+    {{html_ELS_LOCALISE_M|safe}}
+  </div>
+</div>
+
+<div class="row">
+  <h5 class="text-center"> MAX ELU ELS </h5>
+ <div class="col-8">
+
+   {{html_Max_ELU_ELS_LOCALISE_arr|safe}}
+ </div>
+</div>
+</div>
+{% endblock content %}
+        
+
+        
+
+    

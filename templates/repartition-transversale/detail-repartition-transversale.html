@@ -1,0 +1,700 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row p-5">
+
+        <div class="col-8">
+            <h5 class="text-center">calcule de teta </h5>
+            Ia :{{Ia|floatformat:4}} <br>
+            Im : {{Im|floatformat:4}} <br>
+            Ip :{{Ip|floatformat:4}} <br>
+            Ie :{{Ie|floatformat:6}} <br>
+            r  :{{r|floatformat:4}} <br>
+            ro_p: {{ro_p|floatformat:4}} <br>
+            ro_e :{{ro_e|floatformat:6}} <br>
+            
+            <h5>teta : {{teta}}</h5> <br>
+            <h5>alpha : {{alpha}}</h5> <br>
+
+           
+        </div>
+
+        <div class="col-8">
+            <h5 class="text-center">K0</h5>
+            {{html_k0|safe}}
+        </div>
+
+        <div class="col-8">
+            <h5 class="text-center">K1</h5>
+            {{html_k1|safe}}
+        </div>
+
+        <div class="col-8">
+            <h5 class="text-center">Ka</h5>
+            {{html_ka|safe}}
+        </div>
+
+
+        <div class="col-8">
+            <h5 class="text-center">Ka pour les diffrentes poutres</h5>
+            {{html_ka_active|safe}}
+        </div>
+
+        <div class="col-8">
+            <h5 class="text-center">Kalpha max</h5>
+            {{html_ka_max|safe}}
+        </div>
+       <!--poutre 1 -->
+        <div class="col-8">
+              <h5 class="text-center">poutre 1</h5>
+            <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col" >Charge</th>
+                    <th scope="col" >effort </th>
+                    <th scope="col">0</th>
+                    <th scope="col">L/8</th>
+                    <th scope="col">L/4</th>
+                    <th scope="col">3L/8</th>
+                    <th scope="col">X</th>
+                    <th scope="col">L/2</th>
+                  </tr>
+                </thead>
+                <tbody>
+                <!--G-->
+                {%for x in poutre_1.G %}
+                  <tr>
+                    <th scope="row" > G</th>
+                    {% if forloop.counter|divisibleby:2 %}
+                      <th scope="row" > T</th>
+                    {%else%}
+                      <th scope="row" > M</th>
+                    {% endif %}
+                    {%for y in x %}
+                    <td>{{y|floatformat:3}}</td>
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+
+                   <!--A une voie -->
+                {%for x in poutre_1.A1V %}
+                <tr>
+                  <th scope="row" > A une Voie</th>
+                  {% if forloop.counter|divisibleby:2 %}
+                    <th scope="row" > T</th>
+                  {%else%}
+                    <th scope="row" > M</th>
+                  {% endif %}
+                  {%for y in x %}
+                  <td>{{y|floatformat:3}}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+
+                   <!--A deux voie -->
+                   {%for x in poutre_1.A2V %}
+                   <tr>
+                     <th scope="row" > A deux Voie</th>
+                     {% if forloop.counter|divisibleby:2 %}
+                       <th scope="row" > T</th>
+                     {%else%}
+                       <th scope="row" > M</th>
+                     {% endif %}
+                     {%for y in x %}
+                     <td>{{y|floatformat:3}}</td>
+                     {% endfor %}
+                   </tr>
+                   {% endfor %}
+
+                    <!--Bc une voie -->
+                    {%for x in poutre_1.Bc1V %}
+                    <tr>
+                      <th scope="row" > Bc une Voie</th>
+                      {% if forloop.counter|divisibleby:2 %}
+                        <th scope="row" > T</th>
+                      {%else%}
+                        <th scope="row" > M</th>
+                      {% endif %}
+                      {%for y in x %}
+                      <td>{{y|floatformat:3}}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                     <!--Bc Deux voie -->
+                     {%for x in poutre_1.Bc2V %}
+                     <tr>
+                       <th scope="row" > Bc Deux Voie</th>
+                       {% if forloop.counter|divisibleby:2 %}
+                         <th scope="row" > T</th>
+                       {%else%}
+                         <th scope="row" > M</th>
+                       {% endif %}
+                       {%for y in x %}
+                       <td>{{y|floatformat:3}}</td>
+                       {% endfor %}
+                     </tr>
+                     {% endfor %}
+
+
+
+                       <!--Bt une voie -->
+                    {%for x in poutre_1.Bt1V %}
+                    <tr>
+                      <th scope="row" > Bt une Voie</th>
+                      {% if forloop.counter|divisibleby:2 %}
+                        <th scope="row" > T</th>
+                      {%else%}
+                        <th scope="row" > M</th>
+                      {% endif %}
+                      {%for y in x %}
+                      <td>{{y|floatformat:3}}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                     <!--Bt Deux voie -->
+                     {%for x in poutre_1.Bt2V %}
+                     <tr>
+                       <th scope="row" > Bt Deux Voie</th>
+                       {% if forloop.counter|divisibleby:2 %}
+                         <th scope="row" > T</th>
+                       {%else%}
+                         <th scope="row" > M</th>
+                       {% endif %}
+                       {%for y in x %}
+                       <td>{{y|floatformat:3}}</td>
+                       {% endfor %}
+                     </tr>
+                     {% endfor %}
+
+
+                        <!--Br  -->
+                        {%for x in poutre_1.Br %}
+                        <tr>
+                          <th scope="row" > Br </th>
+                          {% if forloop.counter|divisibleby:2 %}
+                            <th scope="row" > T</th>
+                          {%else%}
+                            <th scope="row" > M</th>
+                          {% endif %}
+                          {%for y in x %}
+                          <td>{{y|floatformat:3}}</td>
+                          {% endfor %}
+                        </tr>
+                        {% endfor %}
+
+                        <!--Mc120  -->
+                        {%for x in poutre_1.Mc120 %}
+                        <tr>
+                          <th scope="row" > MC120 </th>
+                          {% if forloop.counter|divisibleby:2 %}
+                            <th scope="row" > T</th>
+                          {%else%}
+                            <th scope="row" > M</th>
+                          {% endif %}
+                          {%for y in x %}
+                          <td>{{y|floatformat:3}}</td>
+                          {% endfor %}
+                        </tr>
+                        {% endfor %}
+
+                         <!--d240  -->
+                         {%for x in poutre_1.D240 %}
+                         <tr>
+                           <th scope="row" > D2d0 </th>
+                           {% if forloop.counter|divisibleby:2 %}
+                             <th scope="row" > T</th>
+                           {%else%}
+                             <th scope="row" > M</th>
+                           {% endif %}
+                           {%for y in x %}
+                           <td>{{y|floatformat:3}}</td>
+                           {% endfor %}
+                         </tr>
+                         {% endfor %}
+
+                          <!--qtr une voie -->
+                        {%for x in poutre_1.qtr1V %}
+                    <tr>
+                      <th scope="row" > qtr une Voie</th>
+                      {% if forloop.counter|divisibleby:2 %}
+                        <th scope="row" > T</th>
+                      {%else%}
+                        <th scope="row" > M</th>
+                      {% endif %}
+                      {%for y in x %}
+                      <td>{{y|floatformat:3}}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                     <!--qtr Deux voie -->
+                     {%for x in poutre_1.qtr2V %}
+                     <tr>
+                       <th scope="row" > qtr Deux Voie</th>
+                       {% if forloop.counter|divisibleby:2 %}
+                         <th scope="row" > T</th>
+                       {%else%}
+                         <th scope="row" > M</th>
+                       {% endif %}
+                       {%for y in x %}
+                       <td>{{y|floatformat:3}}</td>
+                       {% endfor %}
+                     </tr>
+                     {% endfor %}
+
+                      
+                   
+                  
+                </tbody>
+              </table>
+       
+        </div>
+        
+
+        <!--poutre 2 -->
+        <div class="col-8">
+          <h5 class="text-center">poutre 2</h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" >Charge</th>
+                <th scope="col" >effort </th>
+                <th scope="col">0</th>
+                <th scope="col">L/8</th>
+                <th scope="col">L/4</th>
+                <th scope="col">3L/8</th>
+                <th scope="col">X</th>
+                <th scope="col">L/2</th>
+              </tr>
+            </thead>
+            <tbody>
+            <!--G-->
+            {%for x in poutre_2.G %}
+              <tr>
+                <th scope="row" > G</th>
+                {% if forloop.counter|divisibleby:2 %}
+                  <th scope="row" > T</th>
+                {%else%}
+                  <th scope="row" > M</th>
+                {% endif %}
+                {%for y in x %}
+                <td>{{y|floatformat:3}}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+
+               <!--A une voie -->
+            {%for x in poutre_2.A1V %}
+            <tr>
+              <th scope="row" > A une Voie</th>
+              {% if forloop.counter|divisibleby:2 %}
+                <th scope="row" > T</th>
+              {%else%}
+                <th scope="row" > M</th>
+              {% endif %}
+              {%for y in x %}
+              <td>{{y|floatformat:3}}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+
+               <!--A deux voie -->
+               {%for x in poutre_2.A2V %}
+               <tr>
+                 <th scope="row" > A deux Voie</th>
+                 {% if forloop.counter|divisibleby:2 %}
+                   <th scope="row" > T</th>
+                 {%else%}
+                   <th scope="row" > M</th>
+                 {% endif %}
+                 {%for y in x %}
+                 <td>{{y|floatformat:3}}</td>
+                 {% endfor %}
+               </tr>
+               {% endfor %}
+
+                <!--Bc une voie -->
+                {%for x in poutre_2.Bc1V %}
+                <tr>
+                  <th scope="row" > Bc une Voie</th>
+                  {% if forloop.counter|divisibleby:2 %}
+                    <th scope="row" > T</th>
+                  {%else%}
+                    <th scope="row" > M</th>
+                  {% endif %}
+                  {%for y in x %}
+                  <td>{{y|floatformat:3}}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+
+                 <!--Bc Deux voie -->
+                 {%for x in poutre_2.Bc2V %}
+                 <tr>
+                   <th scope="row" > Bc Deux Voie</th>
+                   {% if forloop.counter|divisibleby:2 %}
+                     <th scope="row" > T</th>
+                   {%else%}
+                     <th scope="row" > M</th>
+                   {% endif %}
+                   {%for y in x %}
+                   <td>{{y|floatformat:3}}</td>
+                   {% endfor %}
+                 </tr>
+                 {% endfor %}
+
+
+
+                   <!--Bt une voie -->
+                {%for x in poutre_2.Bt1V %}
+                <tr>
+                  <th scope="row" > Bt une Voie</th>
+                  {% if forloop.counter|divisibleby:2 %}
+                    <th scope="row" > T</th>
+                  {%else%}
+                    <th scope="row" > M</th>
+                  {% endif %}
+                  {%for y in x %}
+                  <td>{{y|floatformat:3}}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+
+                 <!--Bt Deux voie -->
+                 {%for x in poutre_2.Bt2V %}
+                 <tr>
+                   <th scope="row" > Bt Deux Voie</th>
+                   {% if forloop.counter|divisibleby:2 %}
+                     <th scope="row" > T</th>
+                   {%else%}
+                     <th scope="row" > M</th>
+                   {% endif %}
+                   {%for y in x %}
+                   <td>{{y|floatformat:3}}</td>
+                   {% endfor %}
+                 </tr>
+                 {% endfor %}
+
+
+                    <!--Br  -->
+                    {%for x in poutre_2.Br %}
+                    <tr>
+                      <th scope="row" > Br </th>
+                      {% if forloop.counter|divisibleby:2 %}
+                        <th scope="row" > T</th>
+                      {%else%}
+                        <th scope="row" > M</th>
+                      {% endif %}
+                      {%for y in x %}
+                      <td>{{y|floatformat:3}}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                     <!--Mc120  -->
+                     {%for x in poutre_2.Mc120 %}
+                     <tr>
+                       <th scope="row" > MC120 </th>
+                       {% if forloop.counter|divisibleby:2 %}
+                         <th scope="row" > T</th>
+                       {%else%}
+                         <th scope="row" > M</th>
+                       {% endif %}
+                       {%for y in x %}
+                       <td>{{y|floatformat:3}}</td>
+                       {% endfor %}
+                     </tr>
+                     {% endfor %}
+
+                      <!--d240  -->
+                      {%for x in poutre_2.D240 %}
+                      <tr>
+                        <th scope="row" > D2d0 </th>
+                        {% if forloop.counter|divisibleby:2 %}
+                          <th scope="row" > T</th>
+                        {%else%}
+                          <th scope="row" > M</th>
+                        {% endif %}
+                        {%for y in x %}
+                        <td>{{y|floatformat:3}}</td>
+                        {% endfor %}
+                      </tr>
+                      {% endfor %}
+
+                      <!--qtr une voie -->
+                    {%for x in poutre_2.qtr1V %}
+                <tr>
+                  <th scope="row" > qtr une Voie</th>
+                  {% if forloop.counter|divisibleby:2 %}
+                    <th scope="row" > T</th>
+                  {%else%}
+                    <th scope="row" > M</th>
+                  {% endif %}
+                  {%for y in x %}
+                  <td>{{y|floatformat:3}}</td>
+                  {% endfor %}
+                </tr>
+                {% endfor %}
+
+                 <!--qtr Deux voie -->
+                 {%for x in poutre_2.qtr2V %}
+                 <tr>
+                   <th scope="row" > qtr Deux Voie</th>
+                   {% if forloop.counter|divisibleby:2 %}
+                     <th scope="row" > T</th>
+                   {%else%}
+                     <th scope="row" > M</th>
+                   {% endif %}
+                   {%for y in x %}
+                   <td>{{y|floatformat:3}}</td>
+                   {% endfor %}
+                 </tr>
+                 {% endfor %}
+
+                  
+               
+              
+            </tbody>
+          </table>
+       </div>
+
+
+       <!--poutre 3 -->
+       <div class="col-8">
+        <h5 class="text-center">poutre 3</h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col" >Charge</th>
+              <th scope="col" >effort </th>
+              <th scope="col">0</th>
+              <th scope="col">L/8</th>
+              <th scope="col">L/4</th>
+              <th scope="col">3L/8</th>
+              <th scope="col">X</th>
+              <th scope="col">L/2</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!--G-->
+          {%for x in poutre_3.G %}
+            <tr>
+              <th scope="row" > G</th>
+              {% if forloop.counter|divisibleby:2 %}
+                <th scope="row" > T</th>
+              {%else%}
+                <th scope="row" > M</th>
+              {% endif %}
+              {%for y in x %}
+              <td>{{y|floatformat:3}}</td>
+              {% endfor %}
+            </tr>
+            {% endfor %}
+
+             <!--A une voie -->
+          {%for x in poutre_3.A1V %}
+          <tr>
+            <th scope="row" > A une Voie</th>
+            {% if forloop.counter|divisibleby:2 %}
+              <th scope="row" > T</th>
+            {%else%}
+              <th scope="row" > M</th>
+            {% endif %}
+            {%for y in x %}
+            <td>{{y|floatformat:3}}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+
+             <!--A deux voie -->
+             {%for x in poutre_3.A2V %}
+             <tr>
+               <th scope="row" > A deux Voie</th>
+               {% if forloop.counter|divisibleby:2 %}
+                 <th scope="row" > T</th>
+               {%else%}
+                 <th scope="row" > M</th>
+               {% endif %}
+               {%for y in x %}
+               <td>{{y|floatformat:3}}</td>
+               {% endfor %}
+             </tr>
+             {% endfor %}
+
+              <!--Bc une voie -->
+              {%for x in poutre_3.Bc1V %}
+              <tr>
+                <th scope="row" > Bc une Voie</th>
+                {% if forloop.counter|divisibleby:2 %}
+                  <th scope="row" > T</th>
+                {%else%}
+                  <th scope="row" > M</th>
+                {% endif %}
+                {%for y in x %}
+                <td>{{y|floatformat:3}}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+
+               <!--Bc Deux voie -->
+               {%for x in poutre_3.Bc2V %}
+               <tr>
+                 <th scope="row" > Bc Deux Voie</th>
+                 {% if forloop.counter|divisibleby:2 %}
+                   <th scope="row" > T</th>
+                 {%else%}
+                   <th scope="row" > M</th>
+                 {% endif %}
+                 {%for y in x %}
+                 <td>{{y|floatformat:3}}</td>
+                 {% endfor %}
+               </tr>
+               {% endfor %}
+
+
+
+                 <!--Bt une voie -->
+              {%for x in poutre_3.Bt1V %}
+              <tr>
+                <th scope="row" > Bt une Voie</th>
+                {% if forloop.counter|divisibleby:2 %}
+                  <th scope="row" > T</th>
+                {%else%}
+                  <th scope="row" > M</th>
+                {% endif %}
+                {%for y in x %}
+                <td>{{y|floatformat:3}}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+
+               <!--Bt Deux voie -->
+               {%for x in poutre_3.Bt2V %}
+               <tr>
+                 <th scope="row" > Bt Deux Voie</th>
+                 {% if forloop.counter|divisibleby:2 %}
+                   <th scope="row" > T</th>
+                 {%else%}
+                   <th scope="row" > M</th>
+                 {% endif %}
+                 {%for y in x %}
+                 <td>{{y|floatformat:3}}</td>
+                 {% endfor %}
+               </tr>
+               {% endfor %}
+
+
+                  <!--Br  -->
+                  {%for x in poutre_3.Br %}
+                  <tr>
+                    <th scope="row" > Br </th>
+                    {% if forloop.counter|divisibleby:2 %}
+                      <th scope="row" > T</th>
+                    {%else%}
+                      <th scope="row" > M</th>
+                    {% endif %}
+                    {%for y in x %}
+                    <td>{{y|floatformat:3}}</td>
+                    {% endfor %}
+                  </tr>
+                  {% endfor %}
+
+                   <!--Mc120  -->
+                   {%for x in poutre_3.Mc120 %}
+                   <tr>
+                     <th scope="row" > MC120 </th>
+                     {% if forloop.counter|divisibleby:2 %}
+                       <th scope="row" > T</th>
+                     {%else%}
+                       <th scope="row" > M</th>
+                     {% endif %}
+                     {%for y in x %}
+                     <td>{{y|floatformat:3}}</td>
+                     {% endfor %}
+                   </tr>
+                   {% endfor %}
+
+                    <!--d240  -->
+                    {%for x in poutre_3.D240 %}
+                    <tr>
+                      <th scope="row" > D240 </th>
+                      {% if forloop.counter|divisibleby:2 %}
+                        <th scope="row" > T</th>
+                      {%else%}
+                        <th scope="row" > M</th>
+                      {% endif %}
+                      {%for y in x %}
+                      <td>{{y|floatformat:3}}</td>
+                      {% endfor %}
+                    </tr>
+                    {% endfor %}
+
+                    <!--qtr une voie -->
+                  {%for x in poutre_3.qtr1V %}
+              <tr>
+                <th scope="row" > qtr une Voie</th>
+                {% if forloop.counter|divisibleby:2 %}
+                  <th scope="row" > T</th>
+                {%else%}
+                  <th scope="row" > M</th>
+                {% endif %}
+                {%for y in x %}
+                <td>{{y|floatformat:3}}</td>
+                {% endfor %}
+              </tr>
+              {% endfor %}
+
+               <!--qtr Deux voie -->
+               {%for x in poutre_3.qtr2V %}
+               <tr>
+                 <th scope="row" > qtr Deux Voie</th>
+                 {% if forloop.counter|divisibleby:2 %}
+                   <th scope="row" > T</th>
+                 {%else%}
+                   <th scope="row" > M</th>
+                 {% endif %}
+                 {%for y in x %}
+                 <td>{{y|floatformat:3}}</td>
+                 {% endfor %}
+               </tr>
+               {% endfor %}
+
+                
+             
+            
+          </tbody>
+        </table>
+     </div>
+
+    <div class="col-8">
+      <h5 class="text-center">combinaison poutre 1 </h5>
+      {{html_df_combi_1_result|safe}}
+         
+    </div>
+
+    <div class="col-8">
+      <h5 class="text-center">combinaison poutre 2 </h5>
+      {{html_df_combi_2_result|safe}}
+         
+    </div>
+
+    <div class="col-8">
+      <h5 class="text-center">combinaison poutre 3 </h5>
+      {{html_df_combi_3_result|safe}}
+         
+    </div>
+
+    
+   
+      </div>
+</div>
+ 
+ 
+{% endblock content %}
+    
+  

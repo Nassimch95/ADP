@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-8">
+      {% for platelage in platelages %}
+      <a href="{{platelage.get_absolute_url}}"> {{platelage}}</a> <br>
+      
+      {% endfor %}
+      </div>
+      <div class="col-4">
+        <ul class="list-group rounded-0">
+     
+            <li class="list-group-item"> <a href="{% url 'platelage_add' %}">Add platelage </a></li>
+            
+            
+          </ul>
+      </div>
+    </div>
+  </div>
+ 
+{% endblock content %}
+    
+  

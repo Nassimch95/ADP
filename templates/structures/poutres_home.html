@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">poutre</th>
+            <th scope="col">poind de la poutre </th>
+            <th scope="col">nombre de poutre</th>
+            <th scope="col">poids total des poutres</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for poutre in poutres %}
+          <tr>
+            <th scope="row">1</th>
+            <td> <a href="{{poutre.get_absolute_url}}">{{poutre}}</a></td>
+            <td>{{poutre.pp}} t</td>
+            <td>{{poutre.np}} </td>
+            <td>{{poutre.ptp}} t</td>
+          </tr>
+          {% endfor %}
+         
+        </tbody>
+      </table>
+    </div>
+    <div class="col-4">
+      <a href="{% url 'add_poutre' %}" class="btn btn-primary">add poutre</a>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+  
+
+    
+   
+    
+    
+
+   

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+      <div class="col-8">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">poutre</th>
+              <th scope="col">surface total corniche</th>
+              <th scope="col">Volume corniche</th>
+              <th scope="col">poids corniche</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for corniche in corniches %}
+            <tr>
+              <th scope="row">{{corniche.id}}</th>
+              <td> <a href="{{corniche.get_absolute_url}}">{{corniche}}</a></td>
+              <td>{{corniche.S_total_corniche}} t</td>
+              <td>{{corniche.V_corniche}} m3 </td>
+              <td>{{corniche.P_corniche}} t</td>
+            </tr>
+            {% endfor %}
+           
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+       <a class="btn btn-block btn-primary" href="{% url 'add_corniche' %}"> add corniche </a>
+      </div>
+  </div>
+</div>
+{% endblock content %}
+
+    
+   
+    
+    
+    
+
+    

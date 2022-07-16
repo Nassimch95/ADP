@@ -1,0 +1,392 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container-fluid mt-5">
+    <div class="row">
+
+      <div class="col-6">
+        <h5 class="text-center">caracteristique du tablier </h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">proprieté</th>
+              <th scope="col">valeur</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>L</td>
+              <td>{{caracteristique_tablier_detail.L}} m</td>
+              
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Lr</td>
+              <td>{{caracteristique_tablier_detail.Lr}} m</td>
+            
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td >Lc</td>
+              <td >{{caracteristique_tablier_detail.Lc}} m</td>
+              
+            </tr>
+
+            <tr>
+              <th scope="row">3</th>
+              <td >entre axes poutre de rives</td>
+              <td >{{caracteristique_tablier_detail.epdr}} m</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >G</td>
+              <td >{{caracteristique_tablier_detail.G}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >Poids des poutres </td>
+              <td >{{caracteristique_tablier_detail.ptp}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >poids des entretoise </td>
+              <td >{{caracteristique_tablier_detail.pte}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >nombre de voies nv </td>
+              <td >{{caracteristique_tablier_detail.nv}} </td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >largeur de la vois lv  </td>
+              <td >{{caracteristique_tablier_detail.lv}} m</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >lv0</td>
+              <td >{{caracteristique_tablier_detail.lv0}} m</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >classe</td>
+              <td >{{caracteristique_tablier_detail.classe}} </td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >L'</td>
+              <td >{{caracteristique_tablier_detail.Lprime}} m</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >G'</td>
+              <td >{{caracteristique_tablier_detail.Gprime}} t</td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-6">
+        <h5 class="text-center">charge A </h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">proprieté</th>
+              <th scope="col">valeur</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>a1</td>
+              <td>{{caracteristique_tablier_detail.a1}} </td>
+              
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>a2</td>
+              <td>{{caracteristique_tablier_detail.a2}} </td>
+            
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td >A</td>
+              <td >{{caracteristique_tablier_detail.A}} </td>
+              
+            </tr>
+
+            <tr>
+              <th scope="row">3</th>
+              <td >Al</td>
+              <td >{{caracteristique_tablier_detail.Al}} </td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >QA</td>
+              <td >{{caracteristique_tablier_detail.QA}} t</td>
+            </tr>
+
+            
+          
+            
+          
+        
+
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <h5 class="text-center">coeffession de majoration dynamique dans les poutre  </h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">proprieté</th>
+              <th scope="col">valeur</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>coeffession bc</td>
+              <td>{{caracteristique_tablier_detail.cbc}} </td>
+              
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>coeffession bt</td>
+              <td>{{caracteristique_tablier_detail.cbt}} </td>
+            
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td >nombre de convois Bc transversal </td>
+              <td >{{caracteristique_tablier_detail.nBc}} </td>
+              
+            </tr>
+
+            <tr>
+              <th scope="row">3</th>
+              <td >nombre de convois Bt transversal</td>
+              <td >{{caracteristique_tablier_detail.nBt}} </td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >Bc</td>
+              <td >{{caracteristique_tablier_detail.Bc}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >Bt </td>
+              <td >{{caracteristique_tablier_detail.Bt}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >Br</td>
+              <td >{{caracteristique_tablier_detail.Br}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >QB </td>
+              <td >{{caracteristique_tablier_detail.QB}}t </td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >MC120 sur L  </td>
+              <td >{{caracteristique_tablier_detail.qmc120_sur_L}} t</td>
+            </tr>
+
+            
+          
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >MC80 Sur L </td>
+              <td >{{caracteristique_tablier_detail.qmc80_sur_L}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >QM</td>
+              <td >{{caracteristique_tablier_detail.Qm_sur_L}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >coeffection de majoration dynamique B</td>
+              <td >{{caracteristique_tablier_detail.cdmdB}} </td>
+            </tr>
+
+            <tr>
+              <th scope="row">3</th>
+              <td >coeffection de majoration dynamique M</td>
+              <td >{{caracteristique_tablier_detail.cdmdM}} </td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+
+      <div class="col-6">
+        <h5 class="text-center">coeffession de majoration dynamique dans la dalle  </h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">proprieté</th>
+              <th scope="col">valeur</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>coeffession bc</td>
+              <td>{{caracteristique_tablier_detail.cbc}} </td>
+              
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>coeffession bt</td>
+              <td>{{caracteristique_tablier_detail.cbt}} </td>
+            
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td >nombre de convois Bc transversal </td>
+              <td >{{caracteristique_tablier_detail.nBc}} </td>
+              
+            </tr>
+
+            <tr>
+              <th scope="row">3</th>
+              <td >nombre de convois Bt transversal</td>
+              <td >{{caracteristique_tablier_detail.nBt}} </td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >Bc'</td>
+              <td >{{caracteristique_tablier_detail.Bc_sur_L_prime}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >Bt' </td>
+              <td >{{caracteristique_tablier_detail.Bt_sur_L_prime}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >Br'</td>
+              <td >{{caracteristique_tablier_detail.Br_sur_L_prime}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >QB' </td>
+              <td >{{caracteristique_tablier_detail.QB_sur_L_prime}}t </td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >MC120 sur L'  </td>
+              <td >{{caracteristique_tablier_detail.qmc120_sur_L_prime}} t</td>
+            </tr>
+
+            
+          
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >MC80 Sur L' </td>
+              <td >{{caracteristique_tablier_detail.qmc80_sur_L_prime}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >QM'</td>
+              <td >{{caracteristique_tablier_detail.Qm_sur_L_prime}} t</td>
+            </tr>
+
+            
+            <tr>
+              <th scope="row">3</th>
+              <td >coeffection de majoration dynamique B'</td>
+              <td >{{caracteristique_tablier_detail.cdmdBprime}} </td>
+            </tr>
+
+            <tr>
+              <th scope="row">3</th>
+              <td >coeffection de majoration dynamique M'</td>
+              <td >{{caracteristique_tablier_detail.cdmdMprime}} </td>
+            </tr>
+
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+  </div>
+{% endblock content %}
+
+   
+
+       
+
+    

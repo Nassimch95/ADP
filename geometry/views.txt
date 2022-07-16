@@ -1,0 +1,207 @@
+def AddGeometry(request):
+    cart_obj = Cart.objects.new_or_get(request)
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = AddDtSectionForm(request.POST or None)
+        # check whether it's valid:
+        if form.is_valid():
+            
+            # get data :
+            Title = form.cleaned_data['title']
+            Bhourdis= form.cleaned_data['b_hourdis']
+            Hhourdis= form.cleaned_data['h_hourdis']
+            Hsection= form.cleaned_data['h_section']
+            Btabledecompression= form.cleaned_data['b_table_de_compression']
+            Htabledecompression= form.cleaned_data['h_table_de_compression']
+            Bjonction= form.cleaned_data['b_jonction']
+            Hjonction= form.cleaned_data['h_jonction']
+            Bgoussetsuperieur= form.cleaned_data['b_gousset_superieur']
+            Hgoussetsuperieur= form.cleaned_data['h_gousset_superieur']
+            Bame= form.cleaned_data['b_ame']
+            Hame= form.cleaned_data['h_ame']
+            Bgousset_inferieur= form.cleaned_data['b_gousset_inferieur']
+            Hgousset_inferieur= form.cleaned_data['h_gousset_inferieur']
+            Btalon= form.cleaned_data['b_talon']
+            Htalon= form.cleaned_data['h_talon']
+            coef1= Decimal.from_float(0.05)
+            coef2 =Decimal.from_float(1/3)
+            coef3 =Decimal.from_float(0.1)
+            coef4 =Decimal.from_float(0.5)
+
+            
+            # calculate sections :
+            Surfacehourdis = Bhourdis*Hhourdis
+            B1             = Btabledecompression*Htabledecompression
+            B2             = Bjonction*Hjonction
+            B3             = (Bgoussetsuperieur*Hjonction)*2 #la jonction carré
+            B4             = Bgoussetsuperieur*Hgoussetsuperieur
+            B5             = Bame*(Hame+Hgoussetsuperieur+Hgousset_inferieur+Hjonction)
+            B6             = Bgousset_inferieur*Hgousset_inferieur
+            B7             = Btalon*Htalon
+            BTOTALBRUTE    = B1+B2+B3+B4+B5+B6+B7
+            BTOTALNETTE    = BTOTALBRUTE - coef1*BTOTALBRUTE
+            BTOTALBRUTEAVECHOURDIS = BTOTALBRUTE + Surfacehourdis
+            BTOTALNETTEAVECHOURDIS = BTOTALBRUTEAVECHOURDIS -coef1*BTOTALBRUTEAVECHOURDIS
+
+            # calculate Z :
+            Z1                    =  Hsection-coef4*Htabledecompression
+            Z2                    =  Hsection-Htabledecompression-(coef2*Hjonction)
+            Z3                    =  Hsection-Htabledecompression-(coef4*Hjonction)
+            Z4                    =  Hsection-Htabledecompression-Hjonction-(coef2*Hgoussetsuperieur)
+            Z5                    =  Htalon + (Hame+Hgoussetsuperieur+Hgousset_inferieur+Hjonction)*coef4
+            Z6                    =  Htalon + (coef2*Hgousset_inferieur)
+            Z7                    =  coef4*Htalon
+            Z_hourdis             = Hsection +coef4*Hhourdis
+
+            # S/Δ= B*Z
+
+            S_TO_DELTA_1          = B1*Z1
+            S_TO_DELTA_2          = B2*Z2
+            S_TO_DELTA_3          = B3*Z3
+            S_TO_DELTA_4          = B4*Z4
+            S_TO_DELTA_5          = B5*Z5
+            S_TO_DELTA_6          = B6*Z6
+            S_TO_DELTA_7          = B7*Z7
+
+            S_TO_DELTA_TOTAL_BRUTE =   S_TO_DELTA_1+ S_TO_DELTA_2 + S_TO_DELTA_3 + S_TO_DELTA_4 + S_TO_DELTA_5 + S_TO_DELTA_6+ S_TO_DELTA_7
+            S_TO_DELTA_TOTAL_NETTE =   S_TO_DELTA_TOTAL_BRUTE -coef1*S_TO_DELTA_TOTAL_BRUTE
+            S_TO_DELTA_hourdis     =   Surfacehourdis*Z_hourdis
+            S_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS = S_TO_DELTA_TOTAL_BRUTE + S_TO_DELTA_hourdis
+            S_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS = S_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS-coef1*S_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS
+
+            # I0
+
+            I1        =  (Btabledecompression*(Htabledecompression**3))/12
+            I2        =  ((Bjonction*(Hjonction**3))/36)*2
+            I3        =  ((Bgoussetsuperieur*(Hjonction**3))/12)*2
+            I4        =  ((Bgoussetsuperieur*(Hgoussetsuperieur**3))/36)*2
+            I5        =  (Bame*((Hame+Hgoussetsuperieur+Hgousset_inferieur+Hjonction)**3))/12
+            I6        =  ((Bgousset_inferieur*(Hgousset_inferieur**3))/36)*2
+            I7        =  (Btalon*(Htalon**3))/12
+            I_hourdis =  (Bhourdis*(Hhourdis**3))/12
+
+            #  I/Δ=I0+BxZ²
+
+            I_TO_DELTA_1 = I1 + (B1*(Z1**2))
+            I_TO_DELTA_2 = I2 + (B2*(Z2**2))
+            I_TO_DELTA_3 = I3 + (B3*(Z3**2))
+            I_TO_DELTA_4 = I4 + (B4*(Z4**2))
+            I_TO_DELTA_5 = I5 + (B5*(Z5**2))
+            I_TO_DELTA_6 = I6 + (B6*(Z6**2))
+            I_TO_DELTA_7 = I7 + (B7*(Z7**2))
+
+            I_TO_DELTA_TOTAL_BRUTE = I_TO_DELTA_1 + I_TO_DELTA_2 + I_TO_DELTA_3 + I_TO_DELTA_4 +I_TO_DELTA_5 + I_TO_DELTA_6+ I_TO_DELTA_7
+            I_TO_DELTA_TOTAL_NETTE = I_TO_DELTA_TOTAL_BRUTE -coef3*I_TO_DELTA_TOTAL_BRUTE
+            I_TO_DELTA_hourdis     = I_hourdis +(Surfacehourdis*(Z_hourdis**2))
+            I_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS = I_TO_DELTA_TOTAL_BRUTE+I_TO_DELTA_hourdis
+            I_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS =I_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS-coef3*I_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS
+            
+            Vprime = S_TO_DELTA_TOTAL_BRUTE/BTOTALBRUTE
+            IG     = I_TO_DELTA_TOTAL_BRUTE - (S_TO_DELTA_TOTAL_BRUTE* Vprime)
+            V      = Hsection - Vprime
+            rendement = IG/(V*Vprime*BTOTALBRUTE )
+            print(IG)
+
+            
+            
+
+
+
+
+
+            
+            
+            form.instance.cart = cart_obj
+
+            form.instance.B1   = B1
+            form.instance.B2   = B2
+            form.instance.B3   = B3
+            form.instance.B4   = B4
+            form.instance.B5   = B5
+            form.instance.B6   = B6
+            form.instance.B7   = B7
+            form.instance.Surface_hourdis = Surfacehourdis
+
+            form.instance.B_TOTAL_BRUTE = BTOTALBRUTE
+            form.instance.B_TOTAL_NETTE = BTOTALNETTE
+            form.instance.B_TOTAL_BRUTE_AVEC_HOURDIS = BTOTALBRUTEAVECHOURDIS
+            form.instance.B_TOTAL_NETTE_AVEC_HOURDIS = BTOTALNETTEAVECHOURDIS
+
+            # Z :
+            form.instance.Z1   = Z1
+            form.instance.Z2   = Z2
+            form.instance.Z3   = Z3
+            form.instance.Z4   = Z4
+            form.instance.Z5   = Z5
+            form.instance.Z6   = Z6
+            form.instance.Z7   = Z7
+            form.instance.Z_hourdis = Z_hourdis
+            
+            # S/Δ= B*Z
+
+            form.instance.S_TO_DELTA_1   = S_TO_DELTA_1
+            form.instance.S_TO_DELTA_2   = S_TO_DELTA_2
+            form.instance.S_TO_DELTA_3   = S_TO_DELTA_3
+            form.instance.S_TO_DELTA_4   = S_TO_DELTA_4
+            form.instance.S_TO_DELTA_5   = S_TO_DELTA_5
+            form.instance.S_TO_DELTA_6   = S_TO_DELTA_6
+            form.instance.S_TO_DELTA_7   = S_TO_DELTA_7
+            form.instance.S_TO_DELTA_hourdis = S_TO_DELTA_hourdis
+
+            form.instance.S_TO_DELTA_TOTAL_BRUTE = S_TO_DELTA_TOTAL_BRUTE
+            form.instance.S_TO_DELTA_TOTAL_NETTE = S_TO_DELTA_TOTAL_NETTE
+            form.instance.S_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS = S_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS
+            form.instance.S_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS = S_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS
+
+            # I0
+
+            form.instance.I1 = I1
+            form.instance.I2 = I2
+            form.instance.I3 = I3
+            form.instance.I4 = I4
+            form.instance.I5 = I5
+            form.instance.I6 = I6
+            form.instance.I7 = I7
+            form.instance.I_hourdis = I_hourdis
+
+             #  I/Δ=I0+BxZ²
+
+            form.instance.I_TO_DELTA_1 = I_TO_DELTA_1
+            form.instance.I_TO_DELTA_2 = I_TO_DELTA_2
+            form.instance.I_TO_DELTA_3 = I_TO_DELTA_3
+            form.instance.I_TO_DELTA_4 = I_TO_DELTA_4
+            form.instance.I_TO_DELTA_5 = I_TO_DELTA_5
+            form.instance.I_TO_DELTA_6 = I_TO_DELTA_6
+            form.instance.I_TO_DELTA_7 = I_TO_DELTA_7
+            form.instance.I_TO_DELTA_TOTAL_BRUTE = I_TO_DELTA_TOTAL_BRUTE
+            form.instance.I_TO_DELTA_TOTAL_NETTE = I_TO_DELTA_TOTAL_NETTE
+            form.instance.I_TO_DELTA_hourdis     = I_TO_DELTA_hourdis 
+            form.instance.I_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS = I_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS
+            form.instance.I_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS = I_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS
+            form.instance.V_prime = Vprime
+            form.instance.V       = V
+            form.instance.IG      = IG
+            form.instance.rendement =rendement 
+
+            
+
+
+          
+
+
+
+            form.save()
+            return redirect(reverse("GeometryDetail", kwargs={
+                'id': form.instance.id
+            }))
+
+            
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = AddDtSectionForm()
+
+    return render(request, 'AddDtSection.html', {'form': form})
+
+

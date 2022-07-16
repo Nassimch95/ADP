@@ -1,0 +1,8 @@
+
+
+form.instance.combi_ELU_AB_p3 = combi_ELU_AB_p3.tolist()
+form.instance.combi_ELU_Mc120_D240_p3 = combi_ELU_Mc120_D240_p3.tolist()
+form.instance.combi_ELS_AB_p3 = combi_ELS_AB_p3.tolist()
+form.instance.combi_ELS_Mc120_D240_p3 = combi_ELS_Mc120_D240_p3.tolist()
+
+

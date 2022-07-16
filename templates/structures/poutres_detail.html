@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid mt-5">
+  <div class="row">
+      <div class="col-6">
+        <h5>POUTRE :</h5>
+        {{html|safe}}
+
+       <p class="mt-5">
+        2* (∑ li ) = {{poutre_detail.L_total_sections}} m ,L poutre = {{poutre_detail.L_poutre}}</br>
+        VP = 2* (∑ Si *li ) = {{poutre_detail.vtp|floatformat:3}} m3 </br>
+        Poid de la poutre = Vp * {{poutre_detail.pvp}} = {{poutre_detail.pp|floatformat:3}} t </br>
+        Poid total des poutre   = {{poutre_detail.pp|floatformat:3}} *  {{poutre_detail.np}} =  {{poutre_detail.ptp|floatformat:3}} t </br>
+       </p>
+      </div>
+      <div class="col-6">
+      </div>
+  </div>
+  <hr>
+  <div class="row">
+    <h5 class=" mt-2">Entretoise d'about : </h5>
+    <p>les  entretoises d'about sont calculer selon SETRA : </p>
+   <p>
+    Si = {{poutre_detail.S_e}} m² </br>
+    St = {{poutre_detail.S_e_total}} m² </br>
+    Volume de l'entretoise  = {{poutre_detail.V_e}} m3 </br>
+    Poids d'une entretoise  = {{poutre_detail.P_e}} t </br>
+    Poids  total des entretoise = {{poutre_detail.pt_e}} t </br>
+   </p>
+  </div>
+</div>
+{% endblock content %}
+
+  
+     
+   

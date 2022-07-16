@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid p-5 text-center bg-light">
+    <p class="lead"> detail trottoir : {{trottoir_detail}}</p>
+
+</div>
+
+<div class="container-fluid mt-5">
+   <p>
+    surfaces trottoir : {{trottoir_detail.S_trottoir}} m² </br>
+    surface total  trottoir : {{trottoir_detail.S_total_trottoir}} m²</br>
+    Volume trottoir   : {{trottoir_detail.V_trottoir}} m3</br>
+    Poids de la trottoir   : {{trottoir_detail.P_trottoir}} t</br>
+   </p>
+</div>
+{% endblock content %}

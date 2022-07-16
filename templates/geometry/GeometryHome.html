@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+
+  
+
+      <table class="table border">
+        <thead>
+          <tr>
+           
+            <th scope="col">Titre</th>
+            <th scope="col">H poutre</th>
+            <th scope="col">B table de compression</th>
+            <th scope="col">IG</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for section in SectionList %}
+
+          <tr>
+            
+            <td> <a href="{{section.get_absolute_url}}">{{section.content_object}}</a> </td>
+            <td>{{section.content_object.b_ame }} </td>
+            <td>{{section.b_table_de_compression }}</td>
+            <td>{{section.IG }}</td>
+          </tr>
+
+
+          {% endfor %}
+        </tbody>
+      </table>
+      
+    </div>
+    <div class="col-4">
+                <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        add section 
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">section type </h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <a href="{% url 'AddSection_01' %}"> type 1</a>
+              <a href="{% url 'AddSection_02' %}"> type 2</a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+{% endblock content %}
+    
+  

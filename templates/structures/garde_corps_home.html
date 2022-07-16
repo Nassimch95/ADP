@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">garde_corps</th>
+      <th scope="col">longueur  garde_corps </th>
+     
+      <th scope="col">poids de la garde_corps </thgarde_corps>
+    </tr>
+  </thead>
+  <tbody>
+    {% for garde_corps in gardes_corps %}
+    <tr>
+      <th scope="row">1</th>
+      <td> <a href="{{garde_corps.get_absolute_url}}">{{garde_corps}}</a></td>
+      <td>{{garde_corps.L_garde_corps}} t</td>
+      
+      <td>{{garde_corps.P_garde_corps}} t</td>
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+{% endblock content %}
+  
+
+    
+   
+    
+    
+
+   

@@ -1,0 +1,125 @@
+from django.db import models
+from cart.models import Cart
+from django.shortcuts import render, get_object_or_404, redirect, reverse
+# Create your models here.
+
+
+class Dt_section(models.Model):
+    title                  = models.CharField(max_length=120)
+    cart                   = models.ForeignKey(Cart,on_delete=models.CASCADE,null=True, blank=True,)
+    b_hourdis              = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_hourdis              = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_section              = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    b_table_de_compression = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_table_de_compression = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    b_jonction = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_jonction = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    b_gousset_superieur   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_gousset_superieur   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    b_ame  = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_ame  = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    b_gousset_inferieur   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_gousset_inferieur   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    b_talon  = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    h_talon   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    # sections
+
+    B1   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B2   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B3   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B4   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B5   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B6   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B7   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B_TOTAL_BRUTE = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B_TOTAL_NETTE = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Surface_hourdis     = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B_TOTAL_BRUTE_AVEC_HOURDIS = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    B_TOTAL_NETTE_AVEC_HOURDIS = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    # Hauteur des CDG
+
+    Z1   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Z2   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Z3   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Z4   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Z5   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Z6   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Z7   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    Z_hourdis     = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    # S/Δ= B*Z
+
+    S_TO_DELTA_1   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_2   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_3   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_4   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_5   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_6   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_7   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    S_TO_DELTA_TOTAL_BRUTE = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_TOTAL_NETTE = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    S_TO_DELTA_hourdis     = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    S_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+
+    # I0
+
+    I1   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I2   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I3   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I4   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I5   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I6   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I7   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_hourdis     = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    
+    
+
+
+    #  I/Δ=I0+BxZ²
+
+    I_TO_DELTA_1   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_2   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_3   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_4   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_5   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_6   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_7   = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    
+    
+
+    I_TO_DELTA_TOTAL_BRUTE = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_TOTAL_NETTE = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    I_TO_DELTA_hourdis     = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    I_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+
+    V_prime                = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    V                      = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000) 
+    IG                     = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+    rendement              = models.DecimalField(decimal_places= 4, max_digits=20, default=00.0000)
+
+    def __str__(self):
+        
+        return str(self.title)
+
+    def get_absolute_url(self):
+        return reverse('GeometryDetail', kwargs={'id': self.id})
+
+    def csv_export_url(self):
+        return reverse('geometry_csv_export', kwargs={'id': self.id})
+
+    
+      
+
+
+    

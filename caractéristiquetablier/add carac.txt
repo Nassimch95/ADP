@@ -1,0 +1,117 @@
+def Ct_add(request):
+def Ct_add(request):
+    cart_obj = Cart.objects.new_or_get(request)
+    # if this is a POST request we need to process the form data
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = AddDtCaractéristiqueTablier(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            Title = form.cleaned_data['title']
+            L = form.cleaned_data['L']
+            lr = form.cleaned_data['lr']
+            lc = form.cleaned_data['lc']
+            G = form.cleaned_data['G']
+            Gprime = form.cleaned_data['Gprime']
+
+            if lr >= 7 :
+                classe = 1 
+            else :
+                if lr > 5.5 and lr < 7 :
+                  classe = 2 
+                else :
+                    classe = 3 
+            
+
+
+            nv = math.floor(lc/3)
+
+            lv = lc/nv
+
+            a1 = coef_a1[classe,nv]
+            
+            lv0 = lv0_array[classe]
+
+            a2 = round(lv0/lv,3)
+
+            Al = round(( 230 + (36000/(L+12)) )*0.001,3)
+
+            
+
+            cbc = coef_bc[classe-1,nv-1]
+            cbt = coef_bt[classe-1]
+
+            Bc = 30
+            Bt = 16 
+            Br = 10 
+
+            QB = max(Bc*2*nv*cbc,Bt*2*nv*cbt,Br)
+            QM = 110
+
+            SigmaB  = round(1 + (0.4/(1+0.2*L)) + (0.6/(1+(4*G/QB))),4)
+            SigmaM  = round(1 + (0.4/(1+0.2*L)) + (0.6/(1+(4*G/QM))),4)
+            le = 9 
+            
+            Lprime = min(max(lr,le),L)
+            Qprime = get_QB_prime(Lprime)
+            QBprime = max(Qprime*2*nv*cbc,Bt*2*nv*cbt,Br)
+
+            
+            if Lprime <= 6.1 :
+                QMprime = 18.033*Lprime
+            else :
+                QMprime = 110
+
+
+           
+
+            SigmaBprime  = round(1 + (0.4/(1+0.2*Lprime)) + (0.6/(1+(4*Gprime/QBprime))),4)
+            SigmaMprime  = round(1 + (0.4/(1+0.2*Lprime)) + (0.6/(1+(4*Gprime/QMprime))),4)
+
+            
+
+           
+
+
+            form.instance.classe =classe 
+            form.instance.nv = nv
+            form.instance.lv = lv
+            form.instance.lv0 = lv0
+            form.instance.a1 = a1
+            form.instance.a2 = a2
+            form.instance.Al = Al
+           
+            form.instance.cbc = cbc
+            form.instance.cbt = cbt
+            form.instance.QB = QB
+            form.instance.SigmaB = SigmaB
+            form.instance.SigmaM = SigmaM
+            form.instance.Lprime = Lprime
+            form.instance.Bcprime = Qprime
+            form.instance.QBprime = QBprime
+            form.instance.QMprime = QMprime
+            form.instance.SigmaBprime = SigmaBprime
+            form.instance.SigmaMprime = SigmaMprime
+            
+            form.instance.cart =cart_obj 
+
+            
+
+            
+
+
+          
+
+
+
+            form.save()
+            return redirect(reverse("CTDetail", kwargs={
+                'slug': form.instance.slug
+            }))
+                 
+
+    # if a GET (or any other method) we'll create a blank form
+    else:
+        form = AddDtCaractéristiqueTablier()
+
+    return render(request, 'caractéristique-tablier/Add-caractéristique-tablier.html', {'form': form})

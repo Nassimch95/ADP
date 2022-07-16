@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">glissiere</th>
+      <th scope="col">longueur  glissiere </th>
+     
+      <th scope="col">poids de la glissiere </thglissiere>
+    </tr>
+  </thead>
+  <tbody>
+    {% for glissiere in glissieres %}
+    <tr>
+      <th scope="row">1</th>
+      <td> <a href="{{glissiere.get_absolute_url}}">{{glissiere}}</a></td>
+      <td>{{glissiere.L_glissiere}} t</td>
+      
+      <td>{{glissiere.P_glissiere}} t</td>
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+{% endblock content %}
+  
+
+    
+   
+    
+    
+
+   

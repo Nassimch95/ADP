@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container-fluid mt-5">
+  <div class="row">
+    <h5 class="text-center mb-5"> {{geometry_detail.content_object.slug}} sans hourdis </h5>
+    <div class="col-6">
+     
+      {{html|safe}}
+    </div>
+    <div class="col-6">
+      B TOTAL  = {{geometry_detail.content_object.B_TOTAL_BRUTE_SANS_HOURDIS|floatformat:4}} cm² </br>
+      B TOTAL NETTE  = {{geometry_detail.content_object.B_TOTAL_NETTE_SANS_HOURDIS|floatformat:4}} cm² </br>
+      S/Δ TOTAL  = {{geometry_detail.content_object.S_TO_DELTA_TOTAL_BRUTE_SANS_HOURDIS|floatformat:4}} cm3 </br>
+      S/Δ TOTAL NETTE  = {{geometry_detail.content_object.S_TO_DELTA_TOTAL_NETTE_SANS_HOURDIS|floatformat:4}} cm3 </br>
+      I/Δ  TOTAL = {{geometry_detail.content_object.I_TO_DELTA_TOTAL_BRUTE_SANS_HOURDIS|floatformat:4}} cm4 </br>
+      I/Δ  TOTAL NETTE = {{geometry_detail.content_object.I_TO_DELTA_TOTAL_NETTE_SANS_HOURDIS|floatformat:4}} cm4 </br>
+      V' = {{geometry_detail.content_object.V_prime_sans_hourdis|floatformat:4}} cm </br>
+      V = {{geometry_detail.content_object.V_sans_hourdis|floatformat:4}} cm </br>
+      IG = {{geometry_detail.content_object.IG_sans_hourdis|floatformat:4}} cm4</br>
+      rendement = {{geometry_detail.content_object.rendement_sans_hourdis|floatformat:4}} </br>
+      
+      
+    </div>
+  </div>
+
+  <div class="row">
+    <h5 class="text-center mb-5"> {{geometry_detail.content_object.slug}} avec hourdis </h5>
+
+    <div class="col-12">
+      B hourids =  {{geometry_detail.content_object.B_hourdis|floatformat:4}} cm² </br>
+      B TOTAL  = {{geometry_detail.content_object.B_TOTAL_BRUTE_AVEC_HOURDIS|floatformat:4}} cm² </br>
+      B TOTAL NETTE  = {{geometry_detail.content_object.B_TOTAL_NETTE_AVEC_HOURDIS|floatformat:4}} cm² </br>
+      S/Δ TOTAL  = {{geometry_detail.content_object.S_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS|floatformat:4}} cm3 </br>
+      S/Δ TOTAL NETTE  = {{geometry_detail.content_object.S_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS|floatformat:4}} cm3 </br>
+      I/Δ  TOTAL = {{geometry_detail.content_object.I_TO_DELTA_TOTAL_BRUTE_AVEC_HOURDIS|floatformat:4}} cm4 </br>
+      I/Δ  TOTAL NETTE = {{geometry_detail.content_object.I_TO_DELTA_TOTAL_NETTE_AVEC_HOURDIS|floatformat:4}} cm4 </br>
+      V' = {{geometry_detail.content_object.V_prime_avec_hourdis|floatformat:4}} cm </br>
+      V = {{geometry_detail.content_object.V_avec_hourdis|floatformat:4}} cm </br>
+      IG = {{geometry_detail.content_object.IG_avec_hourdis|floatformat:4}} cm4</br>
+      rendement = {{geometry_detail.content_object.rendement_avec_hourdis|floatformat:4}} </br>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+   
+
+  
+
+
+  
+    
+  
+    

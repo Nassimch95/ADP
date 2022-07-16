@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-8">
+      {% for repartition in repartition_transversale_list %}
+      <a href="{{repartition.get_absolute_url}}"> {{repartition.slug}}</a> <br>
+      
+      {% endfor %}
+      </div>
+      <div class="col-4">
+        <ul class="list-group rounded-0">
+     
+            <li class="list-group-item"> <a href="{% url 'add_repartition_transversale' %}">Add repartion transversale </a></li>
+            
+            
+          </ul>
+      </div>
+    </div>
+  </div>
+ 
+{% endblock content %}
+    
+  

@@ -1,0 +1,519 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+  <div class="container-fluid mt-5 px-5">
+
+
+    <div class="row my-5">
+      <h5 class="text-center mb-5"> Systeme BC critique </h5>
+      <div class="col-6">
+       <h5 class="text-center"> P3 CRITIQUE </h5>
+       <table class="table table-bordered">
+         <thead>
+           <tr>
+          
+             <th scope="col">Proprieté </th>
+             <th scope="col">Valeur </th>
+           
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+           
+             <td>R</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.R}} t</td>
+             
+           </tr>
+           <tr>
+             
+             <td>centre de gravité R</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.XR}} m</td>
+            
+           </tr>
+           <tr>
+             
+             <td>distance P3 et R</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.C_P3}} m</td>
+           </tr>
+ 
+           <tr>
+             
+             <td>Xp critique</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.X_P3_critique}} m</td>
+           </tr>
+ 
+           <tr>
+             
+             <td>Xp prime  critique</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.X_prime}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>some des p gauche a P3</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.some_des_p_gauche_a_P3}} t</td>
+           </tr>
+   
+           <tr>
+             
+             <td>R*X/L</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.RXL}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>some des p gauche plus p critique</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.some_des_p_gauche_plus_p_critique}} t</td>
+           </tr>
+   
+           <tr>
+             
+             <td>critique</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.critique}} </td>
+           </tr>
+   
+           <tr>
+             
+             <td>distance P1 a P3</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.distance_P1_a_P3}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>distance P3 a P6</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.distance_P3_a_P6}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>debordement</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.debordement}} </td>
+           </tr>
+   
+   
+           <tr>
+             
+             <td>Pi</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.Pi}} t</td>
+           </tr>
+   
+   
+           <tr>
+             
+             <td>Di</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.Di}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>Some_PiDi</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.Some_PiDi}} </td>
+           </tr>
+   
+           <tr>
+             
+             <td>M</td>
+             <td>{{repartition_longitudinal_detail.P3_Critique.M}} T.ml</td>
+           </tr>
+         </tbody>
+       </table>
+      </div>
+ 
+      <div class="col-6">
+       <h5 class="text-center"> P4 CRITIQUE </h5>
+       <table class="table table-bordered">
+         <thead>
+           <tr>
+          
+             <th scope="col">Proprieté </th>
+             <th scope="col">Valeur </th>
+           
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+           
+             <td>R</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.R}} t</td>
+             
+           </tr>
+           <tr>
+             
+             <td>centre de gravité R</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.XR}} m</td>
+            
+           </tr>
+           <tr>
+             
+             <td>distance P4 et R</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.C_P4}} m</td>
+           </tr>
+ 
+           <tr>
+             
+             <td>X</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.X_P4_critique}} m</td>
+           </tr>
+ 
+           <tr>
+             
+             <td>X'</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.X_prime}} m</td>
+           </tr>
+ 
+   
+           <tr>
+             
+             <td>some des p gauche a P4</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.some_des_p_gauche_a_P4}} t</td>
+           </tr>
+   
+           <tr>
+             
+             <td>R*X/L</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.RXL}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>some des p gauche plus p critique</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.some_des_p_gauche_plus_p_critique}} t</td>
+           </tr>
+   
+           <tr>
+             
+             <td>critique</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.critique}} </td>
+           </tr>
+   
+           <tr>
+             
+             <td>distance P1 a P4</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.distance_P1_a_P4}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>distance P4 a P6</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.distance_P4_a_P6}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>debordement</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.debordement}} </td>
+           </tr>
+   
+   
+           <tr>
+             
+             <td>Pi</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.Pi}} t</td>
+           </tr>
+   
+   
+           <tr>
+             
+             <td>Di</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.Di}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>Some_PiDi</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.Some_PiDi}} </td>
+           </tr>
+   
+           <tr>
+             
+             <td>M</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.M}} T.ml</td>
+           </tr>
+         </tbody>
+       </table>
+      </div>
+    </div>
+ 
+ 
+    <div class="row mb-5">
+      <h5 class="text-center"> Systeme Bt  Critique</h5>
+     <div class="col-6">
+       <h5 class="text-center"> Bt CRITIQUE </h5>
+       <table class="table table-bordered">
+         <thead>
+           <tr>
+          
+             <th scope="col">Proprieté </th>
+             <th scope="col">Valeur </th>
+           
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+           
+             <td>R</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.R}} t</td>
+             
+           </tr>
+           <tr>
+             
+             <td>centre de gravité R</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.XR}} m</td>
+            
+           </tr>
+           <tr>
+             
+             <td>distance P1 et R</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.C_P1}} m</td>
+           </tr>
+ 
+           <tr>
+             
+             <td>X</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.X_P1_critique}} m</td>
+           </tr>
+ 
+           <tr>
+             
+             <td>X'</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.X_prime}} m</td>
+           </tr>
+ 
+   
+           <tr>
+             
+             <td>some des p gauche a P1</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.some_des_p_gauche_a_P1}} t</td>
+           </tr>
+   
+           <tr>
+             
+             <td>R*X/L</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.RXL}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>some des p gauche plus p critique</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.some_des_p_gauche_plus_p_critique}} t</td>
+           </tr>
+   
+           <tr>
+             
+             <td>critique</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.critique}} </td>
+           </tr>
+   
+           <tr>
+             
+             <td>distance P1 a P1</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.distance_P1_a_P1}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>distance P1 a P2</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.distance_P1_a_P2}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>debordement</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.debordement}} </td>
+           </tr>
+   
+   
+           <tr>
+             
+             <td>Pi</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.Pi}} t</td>
+           </tr>
+   
+   
+           <tr>
+             
+             <td>Di</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.Di}} m</td>
+           </tr>
+   
+           <tr>
+             
+             <td>Some_PiDi</td>
+             <td>{{repartition_longitudinal_detail.P1_BT.Some_PiDi}} </td>
+           </tr>
+   
+           <tr>
+             
+             <td>M</td>
+             <td>{{repartition_longitudinal_detail.P4_Critique.M}} T.ml</td>
+           </tr>
+         </tbody>
+       </table>
+      </div>
+      <h5 class="text-center">Conclusion : X critique  = {{repartition_longitudinal_detail.xcritique}} m</h5>
+    </div>
+     
+    <hr>
+
+   <div class="row mt-5">
+    <h5 class="text-center mb-5">charge repartie sur L : (G ,A ,Qtr)</h5>
+
+    <h5 class="text-center">{{title_G}}</h5>
+    {{html_G|safe}}
+
+    <h5 class="text-center">{{title_A}}</h5>
+    {{html_A|safe}}
+
+    <h5 class="text-center">{{title_qtr}}</h5>
+    {{html_qtr|safe}}
+
+   </div>
+
+   
+   
+   <hr>
+  
+
+   <div class="row my-5">
+    <h5 class="text-center mb-5">charge repartie sur lc : (mc120 ,D240)</h5>
+    <div class="col-6">
+      <h5 class="text-center">{{title_mc120}}</h5>
+      {{html_mc120|safe}}
+
+    </div>
+    <div class="col-6">
+      <h5 class="text-center">{{title_d240}}</h5>
+      {{html_d240|safe}}
+    </div>
+    
+   </div>
+
+   
+    <hr>
+   
+    <div class="row my-5">
+      <div class="col-6">
+        <h5 class="text-center">{{title_Bt}}</h5>
+        {{html_Bt|safe}}
+      </div>
+
+      <div class="col-6">
+        <h5 class="text-center">{{title_Br}}</h5>
+        {{html_Br|safe}}
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <h5 class="text-center">Moment  Bc</h5>
+      <div class="col-12">
+        <h5 class="text-center my-5">moment bc sense 1</h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">section</th>
+              <th scope="col">P</th>
+              <th scope="col">P critique</th>
+              <th scope="col">Yi</th>
+              <th scope="col">M</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for Bc_detail_sense_1 in repartition_longitudinal_detail.detail_M_Bc_Total_sense_1 %}
+            <tr>
+              <th scope="row">{{Bc_detail_sense_1.section}}</th>
+              <td>{% for P  in  Bc_detail_sense_1.P_string %} {{P}}<br> {% endfor %}</td>
+              <td>{% for critique in  Bc_detail_sense_1.critique %} {% if critique == "critique" %} <span style="color:red">{{critique}}</span><br>  {% else %} {{critique}} <br> {% endif %} {% endfor %}</td>
+              <td>{% for Yi  in  Bc_detail_sense_1.Yi %} {{Yi|floatformat:3}}<br> {% endfor %}</td>
+              <td>{{ Bc_detail_sense_1.M|floatformat:3}} *n*bc</td>
+              
+            </tr>
+
+            {% endfor %}
+            
+
+          </tbody>
+        </table>
+      
+      </div>
+
+      <div class="col-12">
+        <h5 class="text-center my-5">moment bc sense 2</h5>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">section</th>
+              <th scope="col">P</th>
+              <th scope="col">P critique</th>
+              <th scope="col">Yi</th>
+              <th scope="col">M</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for Bc_detail_sense_2 in repartition_longitudinal_detail.detail_M_Bc_Total_sense_2 %}
+            <tr>
+              <th scope="row">{{Bc_detail_sense_2.section}}</th>
+              <td>{% for P  in  Bc_detail_sense_2.P_string %} {{P}}<br> {% endfor %}</td>
+              <td>{% for critique in  Bc_detail_sense_2.critique %} {% if critique == "critique" %} <span style="color:red">{{critique}}</span><br>  {% else %} {{critique}} <br> {% endif %} {% endfor %}</td>
+              <td>{% for Yi  in  Bc_detail_sense_2.Yi %} {{Yi|floatformat:3}}<br> {% endfor %}</td>
+              <td>{{ Bc_detail_sense_2.M|floatformat:3}} *n*bc</td>
+              
+            </tr>
+
+            {% endfor %}
+            
+
+          </tbody>
+        </table>
+      
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <h5 class="text-center">T bc </h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">section</th>
+                <th scope="col">P</th>
+                <th scope="col">Yi</th>
+                <th scope="col">T</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for T_Bc_detail in repartition_longitudinal_detail.T_Bc_detail %}
+              <tr>
+                <th scope="row">{{T_Bc_detail.section}}</th>
+                <td> {% for P in T_Bc_detail.P %} {{P}} <br> {% endfor %}</td>
+                 <td> {% for y in T_Bc_detail.Yi_list %} {{y|floatformat:3}} <br> {% endfor %}</td>
+                 <td>{{T_Bc_detail.T|floatformat:3}} *n *bc</td>
+              </tr>
+  
+              {% endfor %}
+              
+  
+            </tbody>
+          </table>
+        
+        
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <h5 class="text-center">{{title_Bc}}</h5>
+        {{html_Bc|safe}}
+  
+      </div>
+    </div>
+  
+  </div>
+
+{% endblock content %}
+
+   
+
+       
+
+    

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid mt-5" style="height: 500px;">
+  <h5>liste des tablier: </h5>
+  <table class="table table-bordered mt-5">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">tablier</th>
+      <th scope="col">Ptotal</th>
+     
+      <th scope="col">P total linear </th>
+      
+
+    </tr>
+  </thead>
+  <tbody>
+    {% for tablier in tabliers %}
+    <tr>
+      <th scope="row">1</th>
+      <td> <a href="{{tablier.get_absolute_url}}">{{tablier}}</a></td>
+      <td>{{tablier.P_total_tablier}} t</td>
+      <td>{{tablier.P_total_tablier_sans_entretoise_linear}} t</td>
+      
+      
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+</div>
+
+
+{% endblock content %}
+  
+
+    
+   
+    
+    
+
+   

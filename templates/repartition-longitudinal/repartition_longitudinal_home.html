@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+      <div class="col-8">
+        <table class="table table-bordered">
+          <thead>
+            <tr class="bg-light">
+             
+              <td scope="col">Titre</td>
+              
+              
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for repartition_longitudinal in repartition_longitudinal %}
+
+            <tr>
+              
+              <td> <a href="{{repartition_longitudinal.get_absolute_url}}">{{repartition_longitudinal.slug}}</a> </td>
+              
+            </tr>
+
+
+            {% endfor %}
+          </tbody>
+        </table>
+        
+      </div>
+      <div class="col-4">
+        <ul class="list-group rounded-0">
+          
+          <li class="list-group-item"> <a href="{% url 'Add_repartition_longitudinal' %}">Add repartion longitudinal </a></li>
+          
+          
+        </ul>
+      </div>
+    </div>
+  </div>
+ 
+{% endblock content %}
+    
+  

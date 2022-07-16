@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">dalle</th>
+      <th scope="col">largeur de la dalle </th>
+      <th scope="col">hauteur de la dalle </th>
+      <th scope="col">longueur  dalle </th>
+      <th scope="col"> surface section   dalle </th>
+      <th scope="col"> volume   dalle </th>
+      <th scope="col">poids de la dalle </th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for dalle in dalles %}
+    <tr>
+      <th scope="row">1</th>
+      <td> <a href="{{dalle.get_absolute_url}}">{{dalle}}</a></td>
+      <td>{{dalle.b_dalle}} m</td>
+      <td>{{dalle.h_dalle}} m</td>
+      <td>{{dalle.L_dalle}} m</td>
+      <td>{{dalle.S_dalle}} m²</td> 
+      <td>{{dalle.V_dalle}} m²</td> 
+      <td>{{dalle.P_dalle}} t</td>
+    </tr>
+    {% endfor %}
+   
+  </tbody>
+</table>
+
+{% endblock content %}
+  
+
+    
+   
+    
+    
+
+   
